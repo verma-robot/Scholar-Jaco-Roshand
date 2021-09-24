@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<xacro:property name="M_PI" value="3.14159"/>
+<xacro:include filename="$(find scholar_jaco_roshand_description)/urdf/laser.xacro"/>
+
+<xacro:laser  prefix="front"/>
+<xacro:laser  prefix="rear"/>
+
+<xacro:macro name="top_plate" params="link_name">
+  <link
+    name="${link_name}">
+    <inertial>
+      <origin
+        xyz="0.0279692817829611 0.0240639455155747 0.0567913558939896"
+        rpy="0 0 0" />
+      <mass
+        value="5.24462355245555" />
+      <inertia
+        ixx="0.149439836522331"
+        ixy="0.0200218741252275"
+        ixz="0.0429009474077497"
+        iyy="0.214745002243903"
+        iyz="-0.0248213372689068"
+        izz="0.238737428721334" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://scholar_jaco_roshand_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.2 0.2 0.2 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://scholar_jaco_roshand_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="front_laser_base_joint"
+    type="fixed">
+    <origin
+      xyz="0.30747 0.00013521 0"
+      rpy="3.1416 0 0" />
+    <parent
+      link="${link_name}" />
+    <child
+      link="front_base_laser" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+ 
+  <joint
+    name="rear_laser_base_joint"
+    type="fixed">
+    <origin
+      xyz="-0.16753 0.00013521 0.005"
+      rpy="0 0 -3.1416" />
+    <parent
+      link="${link_name}" />
+    <child
+      link="rear_base_laser" />
+    <axis
+      xyz="0 0 0" />
+  </joint> 
+
+   <link
+    name="kinova_fix_link">
+   </link>
+
+  <joint
+    name="kinova_finx_joint"
+    type="fixed">
+    <origin
+      xyz="0.205785645323564 0 0.0449999999999999"
+      rpy="0 0 1.5708" />
+    <parent
+      link="${link_name}" />
+    <child
+      link="kinova_fix_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+ </xacro:macro>
+</root>

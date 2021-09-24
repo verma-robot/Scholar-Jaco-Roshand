@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<robot name="slam_top_plate" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find scholar_jaco_roshand_description)/urdf/top_plate.xacro" />
+  <xacro:include filename="$(find scholar_base_description)/urdf/scholar_base_description.xacro" />
+  <xacro:include filename="$(find kinova_gen2_roshand_description)/urdf/jaco_vision.xacro" />
+
+  <top_plate link_name="slam_top_plate">
+
+  </top_plate>
+
+  <xacro:jaco  base_parent="kinova_fix_link" prefix = "jaco" camera_name = "camera_on_hand" />
+
+  <joint
+    name="scholoar_base_top_plate"
+    type="fixed">
+    <origin
+      xyz="-0.00098 -0.00668 0"
+      rpy="0 0 0" />
+    <parent
+      link="top_plate_link" />
+    <child
+      link="slam_top_plate" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <!--joint
+    name="scholoar_jaco"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="kinova_fix_link" />
+    <child
+      link="slam_top_plate" />
+    <axis
+      xyz="0 0 0" />
+  </joint-->
+
+
+</robot>
